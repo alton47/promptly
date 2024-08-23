@@ -1,3 +1,5 @@
+import Feed from '@components/Feed'
+
 const Home = () => {
   return (
     <div>
@@ -7,9 +9,12 @@ const Home = () => {
             <br className="max-md:hidden" />
             <span className="orange_gradient text-center"> AI-Powered Prompts</span>
         </h1>
-        <p>Promptly is a modern AI prompting tool for discovering and sharing 
+        <p className="desc text-center">Promptly is a modern AI prompting tool for discovering and sharing 
             creative prompts.
         </p>
+
+
+        <Feed />
       </section>
     </div>
   )

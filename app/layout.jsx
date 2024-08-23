@@ -1,4 +1,6 @@
 import '@styles/globals.css'; // Correct import path with forward slash
+import Nav from '@components/Nav';
+import Provider from '@components/Provider';
 
 export const metadata = {
   title: 'Promptly',
@@ -14,6 +16,7 @@ const RootLayout = ({ children }) => {
           <div className="gradient" />
         </div>
         <main className="app">
+          <Nav />
           {children}  
         </main>
       </body>
