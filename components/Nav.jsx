@@ -7,8 +7,8 @@ import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const Nav = () => {
   const isUserLoggedIn = true;
-
   const [ providers, setProviders ] = useState(null);
+  const [toggleDropdown, setToggleDrpodown] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
@@ -49,11 +49,11 @@ const Nav = () => {
 
             <Link href='/profile'>
               <Image
-               scr='/assets/images/logo.svg'
-               alt='Profile picture'
-               width={37}
-               height={37}
-               className='rounded-full'            
+                scr='/assets/images/logo.svg'
+                alt='Profile picture'
+                width={37}
+                height={37}
+                className='rounded-full'            
              />
             </Link>
           </div>
@@ -73,7 +73,58 @@ const Nav = () => {
       </div>
 
        {/* Mobile Navigation */}
+       <div className='sm:hidden flex relative'>
+         {isUserLoggedIn ? (
+           <div className='flex'>
+            <Image
+             scr='/assets/images/logo.svg'
+             alt='Profile picture'
+             width={37}
+             height={37}
+             className='rounded-full' 
+             onClick={() => setToggleDrpodown((prev) => !prev)}           
+            />
 
+            {toggleDropdown && (
+              <div className='dropdown'>
+                <Link
+                href='/profile'
+                className='dropdown_link'
+                onClick={() => setToggleDrpodown(false)}>
+                  My Profile
+                </Link>
+                <Link
+                href='/create-prompt'
+                className='dropdown_link'
+                onClick={() => setToggleDrpodown(false)}>
+                  Create Prompt
+                </Link>
+                <button 
+                  type='button'
+                  className='mt-5 w-full black_btn'
+                  onClick={() => {
+                    setToggleDrpodown(false);
+                    signOut();
+                  }}>
+                    Sign Out
+                  </button>
+              </div>
+            )}
+           </div>
+         ): (
+          <>
+          {providers &&
+            Object.values(providers).map((providers) => (
+              <button type='button'
+              key={providers.name}
+              onClick={() => signIn(provider.id)}
+              className='black_btn'>
+                Sign In
+              </button>
+            ))}
+          </>
+        )}
+       </div>
 
     </nav>
   )
