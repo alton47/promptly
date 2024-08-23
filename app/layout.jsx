@@ -1,25 +1,24 @@
-import '@styles/globals.css';
-import { Children } from 'react';
+import '@styles/globals.css'; // Correct import path with forward slash
 
 export const metadata = {
-    title: 'Promptly',
-    description: 'Discover and share AI prompts'
-}
+  title: 'Promptly',
+  description: 'Discover and share AI prompts',
+};
 
-const RootLayout = () => {
+// The RootLayout receives and renders `children` as a prop
+const RootLayout = ({ children }) => {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
-        <div className='main'>
-            <div className='gradient' />
+        <div className="main">
+          <div className="gradient" />
         </div>
-
-        <main className='app'>
-            {Children}
+        <main className="app">
+          {children}  
         </main>
       </body>
     </html>
-  )
-}
+  );
+};
 
 export default RootLayout;
