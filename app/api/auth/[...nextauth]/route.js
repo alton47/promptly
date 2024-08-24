@@ -12,6 +12,13 @@ const handler = NextAuth ({
         })
     ],
     async session({session}) {
+        const sesionUser = await User.findOne({
+            email: session.user.email
+        })
+
+        session.user.id = sesionUser._id.toString();
+
+        return session;
 
     },
     async signIn({profile}) {
@@ -19,8 +26,18 @@ const handler = NextAuth ({
             await connectToDB();
 
             //Check if user already Exists
+            const userExists = await User.findOne({
+                email: profile.email
+            });
 
             //If NOT, create new user
+            if(!userExists) { 
+                await User.create({
+                    email: profile.email,
+                    username: profile.name.replace(" ", " ").toLowerCase(),
+                    image: profile.picture
+                })
+            }
 
             return true;
         } catch(error) {
