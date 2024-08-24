@@ -16,4 +16,9 @@ const userSchema = newSchema({
     }
 });
 
-// Tumeishia hapaaaa 1:33:24 Uhr
+// Normal when running forever... const User = model('User', userSchema);  export default User; 
+
+// Only when needed
+const User = models.User || model('User', userSchema);
+
+export default User;
