@@ -1,6 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
-const userSchema = newSchema({
+const userSchema = new Schema({
     email: {
         type: String,
         unique: [true, 'Email already taken!'],
