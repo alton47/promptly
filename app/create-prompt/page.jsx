@@ -19,7 +19,7 @@ const CreatePrompt = () => {
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/prompt/new', {
+      const response = await fetch("/api/prompt/new", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,10 +34,10 @@ const CreatePrompt = () => {
       if (response.ok) {
         router.push('/');
       } else {
-        console.error('Failed to create prompt');
+        console.log('Failed to create prompt');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
     } finally {
       setSubmitting(false);
     }
