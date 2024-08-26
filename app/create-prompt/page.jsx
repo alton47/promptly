@@ -12,7 +12,9 @@ const CreatePrompt = () => {
     tag: '',
   });
 
-  const createPrompt = async (e) => {}
+  const createPrompt = async (e) => {
+    e.preventDefault();
+  }
   return (
     <Form
        type="Create"
