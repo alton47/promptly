@@ -15,40 +15,49 @@ const CreatePrompt = () => {
   });
 
   const createPrompt = async (e) => {
-    e.preventDefault(); //Prevents reLoads
+    e.preventDefault(); // Prevents the form from reloading the page
     setSubmitting(true);
 
+    if (!session?.user?.id) {
+      console.error('User is not authenticated');
+      setSubmitting(false);
+      return;
+    }
+
     try {
-      const response = await fetch('/api/prompt/new',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            prompt: post.prompt,
-            userId: session?.user.id,
-            tag: post.tag
-          })
-        })  
+      const response = await fetch('/api/prompt/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: post.prompt,
+          userId: session.user.id,
+          tag: post.tag,
+        }),
+      });
 
-          if(response.ok) { 
-            router.push('/');
-          }
-
+      if (response.ok) {
+        router.push('/');
+      } else {
+        console.error('Failed to create prompt', await response.text());
+      }
     } catch (error) {
-      console.log(error);
-    }finally {
+      console.error('An error occurred while creating the prompt:', error);
+    } finally {
       setSubmitting(false);
     }
-  }
+  };
 
   return (
     <Form
-       type="Create"
-       post={post}
-       setPost={setPost}
-       submitting={submitting}
-       handleSubmit={createPrompt}
+      type="Create"
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={createPrompt}
     />
-  )
-}
+  );
+};
 
-export default CreatePrompt
+export default CreatePrompt;
