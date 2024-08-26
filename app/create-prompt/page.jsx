@@ -15,14 +15,8 @@ const CreatePrompt = () => {
   });
 
   const createPrompt = async (e) => {
-    e.preventDefault(); // Prevents the form from reloading the page
+    e.preventDefault(); // Prevents reloads
     setSubmitting(true);
-
-    if (!session?.user?.id) {
-      console.error('User is not authenticated');
-      setSubmitting(false);
-      return;
-    }
 
     try {
       const response = await fetch('/api/prompt/new', {
@@ -32,7 +26,7 @@ const CreatePrompt = () => {
         },
         body: JSON.stringify({
           prompt: post.prompt,
-          userId: session.user.id,
+          userId: session?.user.id,
           tag: post.tag,
         }),
       });
@@ -40,10 +34,10 @@ const CreatePrompt = () => {
       if (response.ok) {
         router.push('/');
       } else {
-        console.error('Failed to create prompt', await response.text());
+        console.error('Failed to create prompt');
       }
     } catch (error) {
-      console.error('An error occurred while creating the prompt:', error);
+      console.error('Error:', error);
     } finally {
       setSubmitting(false);
     }
