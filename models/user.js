@@ -9,16 +9,20 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: [true, 'Username is required!'],
-        match: [/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/, "Username invalid, it should contain 8-20 alphanumeric letters and be unique!"]
+        match: [/^(?=.{8,20}$)(?!.*[_.]{2})[a-zA-Z0-9._ ]+$/, "Username invalid, it should contain 8-20 characters including letters, numbers, dots, underscores, or spaces!"],
     },
     image: {
         type: String,
     }
 });
 
-// Normal when running forever... const User = model('User', userSchema);  export default User; 
+// Optional: Sanitize username by replacing spaces with underscores
+userSchema.pre('save', function (next) {
+    this.username = this.username.replace(/\s/g, '_'); // Replace spaces with underscores
+    next();
+});
 
-// Only when needed
+// Check if the User model exists; if not, create it
 const User = models.User || model('User', userSchema);
 
 export default User;
