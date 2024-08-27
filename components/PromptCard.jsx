@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,9 +11,17 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const router = useRouter();
   const [copied, setCopied] = useState("");
 
-  // Ensure post and creator are defined before accessing their properties
-  if (!post || !post.creator) {
-    return null; // or return a loading spinner or fallback UI
+  // Debugging: Log the `post` object to check if it's being passed correctly.
+  useEffect(() => {
+    console.log("Post data:", post);
+  }, [post]);
+
+  if (!post) {
+    return <p>Loading post...</p>; // If `post` is missing, show a loading state
+  }
+
+  if (!post.creator) {
+    return <p>Post creator information is missing.</p>; // If `creator` is missing, show an error message
   }
 
   const handleProfileClick = () => {
@@ -47,10 +55,10 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
           <div className="flex flex-col">
             <h3 className="font-satoshi font-semibold text-gray-900">
-              {post.creator.username}
+              {post.creator.username || "Anonymous"}
             </h3>
             <p className="font-inter text-sm text-gray-500">
-              {post.creator.email}
+              {post.creator.email || "No email provided"}
             </p>
           </div>
         </div>
@@ -69,12 +77,12 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         </div>
       </div>
 
-      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt}</p>
+      <p className="my-4 font-satoshi text-sm text-gray-700">{post.prompt || "No prompt available"}</p>
       <p
         className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
-        #{post.tag}
+        #{post.tag || "untagged"}
       </p>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
