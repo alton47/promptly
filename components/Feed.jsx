@@ -10,7 +10,6 @@ const Feed = () => {
 
   }
 
-  
   return (
     <section
     className="feed">
@@ -23,6 +22,10 @@ const Feed = () => {
            required
            className="search_input peer" />
       </form>
+
+      <PromptCardList 
+          data={[]}
+          handleTagClick={() => {}}/>
     </section>
   )
 }
