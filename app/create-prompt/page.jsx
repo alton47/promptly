@@ -15,11 +15,15 @@ const CreatePrompt = () => {
   });
 
   const createPrompt = async (e) => {
-    e.preventDefault(); // Prevents reloads
+    e.preventDefault(); // Prevents page reloads
     setSubmitting(true);
 
+    // Logging for debugging purposes
+    console.log("Submitting post:", post);
+    console.log("Session data:", session);
+
     try {
-      const response = await fetch("/api/prompt/new", {
+      const response = await fetch('/api/prompt/new', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,12 +36,15 @@ const CreatePrompt = () => {
       });
 
       if (response.ok) {
+        console.log('Prompt created successfully');
         router.push('/');
       } else {
-        console.log('Failed to create prompt');
+        console.error('Failed to create prompt. Response status:', response.status);
+        const errorMessage = await response.text();
+        console.error('Error message:', errorMessage);
       }
     } catch (error) {
-      console.log('Error:', error);
+      console.error('Error:', error);
     } finally {
       setSubmitting(false);
     }
