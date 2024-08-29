@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img width="868" alt="Promptly" src="https://github.com/user-attachments/assets/f5d03abe-851c-4db6-8855-1e2178298117">
+
 
 ## Getting Started
 
@@ -24,5 +25,4 @@ Resources:
 - [Video](https://youtu.be/wm5gMKuwSYk?si=JIDi-fsQmSwTy3t3) - Project Video source!
 
 You can check out [Project Source Github repo](https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing) your feedback and contributions are welcome!
-
-## Allan
+Allan
