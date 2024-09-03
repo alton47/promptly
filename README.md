@@ -1,5 +1,5 @@
 <img width="868" alt="Promptly" src="https://github.com/user-attachments/assets/f5d03abe-851c-4db6-8855-1e2178298117">
-
+[Live site](https://promptly-eosin.vercel.app/)
 
 ## Getting Started
 
