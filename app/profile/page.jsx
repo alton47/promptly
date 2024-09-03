@@ -61,7 +61,4 @@ const MyProfile = () => {
 
 export default MyProfile;
 
-//Implement search
-//Implement tag Collection LIST
-//Implement view Other Profiles
-// Copy code za jamaa
+

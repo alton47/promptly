@@ -27,3 +27,7 @@ const RootLayout = ({ children }) => {
 };
 
 export default RootLayout;
+
+//Implement search(Tag, Prompt & Username)
+//Implement tag Collection LIST
+//Implement view Other Profiles
