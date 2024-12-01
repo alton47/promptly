@@ -23,7 +23,7 @@ Resources:
 - [Next.js Documentation](https://nextjs.org/docs) - Next.js features and API.
 - [Next.js Auth Documentation](https://next-auth.js.org/) - Auth Documentation
 - [Learn Next.js](https://nextjs.org/learn) - Next.js tutorial.
-- [Video](https://youtu.be/wm5gMKuwSYk?si=JIDi-fsQmSwTy3t3) - Project Video source!
+- [Video](https://youtu.be/wm5gMKuwSYk?si=JIDi-fsQmSwTy3t3) - Project Video Inspiration!
 
 You can check out [Project Source Github repo](https://github.com/adrianhajdin/project_next_14_ai_prompt_sharing) your feedback and contributions are welcome!
 Allan
